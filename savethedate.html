@@ -730,6 +730,7 @@ function SaveTheDate() {
 
 function BgMusic() {
   const ref = React.useRef(null);
+  const [needsTap, setNeedsTap] = React.useState(false);
   const [muted, setMuted] = React.useState(false);
   React.useEffect(() => {
     const el = ref.current;
@@ -737,7 +738,8 @@ function BgMusic() {
     el.volume = 0.55;
     const tryPlay = () => {
       const p = el.play();
-      if (p && p.catch) p.catch(() => {});
+      if (p && p.then) p.then(() => setNeedsTap(false));
+      if (p && p.catch) p.catch(() => setNeedsTap(true));
     };
     // Keep trying opportunistically when the tab regains focus/visibility.
     tryPlay();
@@ -754,7 +756,7 @@ function BgMusic() {
   }, []);
   const toggle = () => {
     const el = ref.current; if (!el) return;
-    if (el.paused) { el.play(); setMuted(false); }
+    if (el.paused) { el.play(); setMuted(false); setNeedsTap(false); }
     else { el.pause(); setMuted(true); }
   };
   return (
@@ -772,6 +774,18 @@ function BgMusic() {
       }}>
         {muted ? '♪̸' : '♪'}
       </button>
+      {needsTap && !muted && (
+        <button onClick={toggle} style={{
+          position: 'fixed', top: 14, right: 64, zIndex: 2000,
+          padding: '8px 14px', borderRadius: 999,
+          background: 'rgba(255,250,238,0.92)',
+          border: '1px solid rgba(58,74,58,0.2)',
+          fontFamily: '"Cormorant Garamond", serif', fontStyle: 'italic',
+          color: '#3a4a3a', fontSize: 13,
+          boxShadow: '0 4px 14px rgba(0,0,0,0.15)',
+          cursor: 'pointer',
+        }}>tap to play music</button>
+      )}
     </>
   );
 }
