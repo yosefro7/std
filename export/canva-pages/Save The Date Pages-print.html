@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Save The Date — Yaz & Yosef (Print)</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #1a1512;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body {
+    font-family: "Inter", sans-serif;
+    color: #2B2418;
+  }
+
+  @page {
+    size: 1080px 1920px;
+    margin: 0;
+  }
+
+  .page {
+    width: 1080px;
+    height: 1920px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+    break-inside: avoid;
+    margin: 0 auto;
+  }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+
+  .photo {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* ─── Page 1: Landing watercolor ─── */
+  .p1 .photo { background-position: center 35%; }
+  .p1 .top-wash {
+    position: absolute; top: 0; left: 0; right: 0; height: 32%;
+    background: linear-gradient(180deg, rgba(255,250,238,0.85) 0%, rgba(255,250,238,0.45) 50%, rgba(255,250,238,0) 100%);
+  }
+  .p1 .title {
+    position: absolute; top: 180px; left: 0; right: 0;
+    text-align: center; padding: 0 80px;
+  }
+  .p1 .title-text {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 1.2;
+    color: #3a4a3a;
+    letter-spacing: 0.8px;
+  }
+  .p1 .title-rule {
+    margin: 50px auto 0;
+    width: 80px; height: 1.2px;
+    background: rgba(58,74,58,0.4);
+  }
+  .p1 .pill-wrap {
+    position: absolute; bottom: 150px; left: 0; right: 0;
+    display: flex; flex-direction: column; align-items: center; gap: 36px;
+  }
+  .p1 .pill {
+    background: rgba(255,250,238,0.88);
+    border: 1px solid rgba(58,74,58,0.18);
+    padding: 30px 56px;
+    border-radius: 999px;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 40px;
+    color: #3a4a3a;
+    letter-spacing: 0.8px;
+    box-shadow: 0 16px 50px rgba(40,60,40,0.18);
+  }
+  .p1 .arrow {
+    width: 96px; height: 96px;
+    border-radius: 50%;
+    background: rgba(255,250,238,0.85);
+    border: 1px solid rgba(58,74,58,0.35);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px;
+    color: #3a4a3a;
+  }
+
+  /* ─── Page 2 ─── */
+  .p2 .photo { background-position: center 30%; }
+  .p2 .vignette {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0.55) 100%);
+  }
+  .p2 .ornament {
+    position: absolute; top: 110px; left: 0; right: 0; text-align: center;
+    font-family: "Inter", sans-serif;
+    font-size: 24px; letter-spacing: 12px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+  }
+  .p2 .ornament .amp { opacity: 0.7; margin: 0 8px; }
+  .p2 .center {
+    position: absolute; left: 0; right: 0; top: 50%;
+    transform: translateY(-50%);
+    text-align: center; padding: 0 60px;
+  }
+  .p2 .save-date {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 220px;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -3px;
+  }
+  .p2 .the {
+    font-style: normal;
+    font-size: 44px;
+    letter-spacing: 14px;
+    margin: 14px 0;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .p2 .rule {
+    margin: 64px auto 0;
+    width: 140px; height: 1.2px;
+    background: rgba(255,255,255,0.7);
+  }
+  .p2 .date {
+    margin-top: 56px;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 400;
+    font-size: 80px;
+    color: #fff;
+    letter-spacing: 1.2px;
+  }
+  .p2 .date sup { font-size: 44px; vertical-align: super; }
+
+  /* ─── Page 3 ─── */
+  .p3 .vignette {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.55) 100%);
+  }
+  .p3 .names {
+    position: absolute; left: 0; right: 0; top: 130px;
+    text-align: center; padding: 0 60px;
+  }
+  .p3 .name {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 200px;
+    line-height: 0.95;
+    color: #fff;
+    letter-spacing: -4px;
+  }
+  .p3 .amp-big {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 80px;
+    color: rgba(255,255,255,0.85);
+    margin: 6px 0;
+  }
+  .p3 .tagline {
+    margin: 56px auto 0;
+    display: flex; align-items: center; justify-content: center; gap: 28px;
+  }
+  .p3 .tagline .line { width: 60px; height: 1.2px; background: rgba(255,255,255,0.6); }
+  .p3 .tagline .lbl {
+    font-family: "Inter", sans-serif;
+    font-size: 24px; letter-spacing: 10px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+  }
+  .p3 .location {
+    position: absolute; bottom: 150px; left: 0; right: 0;
+    text-align: center; padding: 0 60px;
+  }
+  .p3 .city {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 64px;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+  .p3 .country {
+    margin-top: 14px;
+    font-family: "Inter", sans-serif;
+    font-size: 24px; letter-spacing: 10px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+  }
+
+  /* ─── Page 4 ─── */
+  .p4 .vignette {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,14,18,0.55) 0%, rgba(10,14,18,0.25) 50%, rgba(10,14,18,0.75) 100%);
+  }
+  .p4 .top {
+    position: absolute; top: 110px; left: 0; right: 0; text-align: center;
+    font-family: "Inter", sans-serif;
+    font-size: 24px; letter-spacing: 12px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+  }
+  .p4 .center {
+    position: absolute; left: 0; right: 0; top: 50%;
+    transform: translateY(-50%);
+    padding: 0 50px;
+  }
+  .p4 .until {
+    text-align: center; margin-bottom: 100px;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 76px;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .p4 .ido {
+    font-style: normal; letter-spacing: 6px; font-size: 60px;
+    display: block; margin-top: 12px;
+  }
+  .p4 .countdown {
+    display: flex; gap: 8px; margin: 0 auto; max-width: 880px;
+    align-items: center;
+  }
+  .p4 .unit { text-align: center; flex: 1; }
+  .p4 .unit .num {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 400;
+    font-size: 130px;
+    line-height: 1;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+  }
+  .p4 .unit .lbl {
+    font-family: "Inter", sans-serif;
+    font-size: 22px; letter-spacing: 7px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    margin-top: 22px;
+  }
+  .p4 .countdown .sep {
+    width: 1px; background: rgba(255,255,255,0.4);
+    align-self: stretch; margin: 14px 0;
+  }
+  .p4 .signature {
+    position: absolute; bottom: 110px; left: 0; right: 0; text-align: center;
+  }
+  .p4 .signature .yy {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 60px;
+    color: #fff;
+    letter-spacing: 6px;
+  }
+  .p4 .signature .yy .a { font-style: italic; opacity: 0.7; margin: 0 10px; }
+  .p4 .signature .formal {
+    margin-top: 22px;
+    font-family: "Inter", sans-serif;
+    font-size: 22px; letter-spacing: 8px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+  }
+</style>
+</head>
+<body>
+
+<!-- Page 1 -->
+<div class="page p1">
+  <div class="photo" style="background-image: url('../src/assets/watercolor-landscape.jpeg');"></div>
+  <div class="top-wash"></div>
+  <div class="title">
+    <div class="title-text">A letter from<br>the mountains</div>
+    <div class="title-rule"></div>
+  </div>
+  <div class="pill-wrap">
+    <div class="pill">Tap anywhere to continue the story</div>
+    <div class="arrow">↓</div>
+  </div>
+</div>
+
+<!-- Page 2 -->
+<div class="page p2">
+  <div class="photo" style="background-image: url('../src/assets/hands-ring-new.jpeg');"></div>
+  <div class="vignette"></div>
+  <div class="ornament">— Yaz <span class="amp">&amp;</span> Yosef —</div>
+  <div class="center">
+    <div class="save-date">
+      Save
+      <div class="the">the</div>
+      Date
+    </div>
+    <div class="rule"></div>
+    <div class="date">March 13<sup>th</sup>, 2027</div>
+  </div>
+</div>
+
+<!-- Page 3 -->
+<div class="page p3">
+  <div class="photo" style="background-image: url('../src/assets/holdinghands-new.jpeg');"></div>
+  <div class="vignette"></div>
+  <div class="names">
+    <div class="name">Yaz</div>
+    <div class="amp-big">&amp;</div>
+    <div class="name">Yosef</div>
+    <div class="tagline">
+      <div class="line"></div>
+      <div class="lbl">are getting married</div>
+      <div class="line"></div>
+    </div>
+  </div>
+  <div class="location">
+    <div class="city">Jiutepec, Morelos</div>
+    <div class="country">México</div>
+  </div>
+</div>
+
+<!-- Page 4 -->
+<div class="page p4">
+  <div class="photo" style="background-image: url('../src/assets/mountainview.jpeg');"></div>
+  <div class="vignette"></div>
+  <div class="top">— counting the days —</div>
+  <div class="center">
+    <div class="until">
+      Until we say
+      <span class="ido">I DO</span>
+    </div>
+    <div class="countdown" id="countdown"></div>
+  </div>
+  <div class="signature">
+    <div class="yy">Y <span class="a">&amp;</span> Y</div>
+    <div class="formal">formal invitation to follow</div>
+  </div>
+</div>
+
+<script>
+  const target = new Date('2027-03-13T17:00:00-06:00');
+  const now = new Date();
+  const diff = Math.max(0, target - now);
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const minutes = Math.floor((diff % 3600000) / 60000);
+  const seconds = Math.floor((diff % 60000) / 1000);
+  const units = [[days,'days'],[hours,'hrs'],[minutes,'min'],[seconds,'sec']];
+  const cd = document.getElementById('countdown');
+  units.forEach(([n, lbl], i) => {
+    if (i > 0) { const sep = document.createElement('div'); sep.className = 'sep'; cd.appendChild(sep); }
+    const u = document.createElement('div');
+    u.className = 'unit';
+    u.innerHTML = '<div class="num">' + String(n).padStart(2,'0') + '</div><div class="lbl">' + lbl + '</div>';
+    cd.appendChild(u);
+  });
+
+  // Auto-print after fonts and images settle
+  (async () => {
+    try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch(e) {}
+    const imgs = [
+      '../src/assets/watercolor-landscape.jpeg',
+      '../src/assets/hands-ring-new.jpeg',
+      '../src/assets/holdinghands-new.jpeg',
+      '../src/assets/mountainview.jpeg',
+    ].map(src => new Promise(res => { const i = new Image(); i.onload = i.onerror = res; i.src = src; }));
+    await Promise.all(imgs);
+    setTimeout(() => window.print(), 500);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="ext-resource-dependency" content="assets/watercolor-landscape.jpeg" data-resource-id="watercolor">
+<meta name="ext-resource-dependency" content="assets/hands-ring-new.jpeg" data-resource-id="ringNew">
+<meta name="ext-resource-dependency" content="assets/holdinghands-new.jpeg" data-resource-id="handsNew">
+<meta name="ext-resource-dependency" content="assets/mountainview.jpeg" data-resource-id="mountainview">
+<meta name="ext-resource-dependency" content="assets/chief-bw.jpeg" data-resource-id="chiefBw">
+<meta name="ext-resource-dependency" content="assets/squamish-wide.jpeg" data-resource-id="squamishWide">
+<meta name="ext-resource-dependency" content="assets/hands-ring.jpeg" data-resource-id="handsRing">
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+    <rect width="400" height="400" fill="#EFE6D4"/>
+    <g transform="translate(120, 140)">
+      <path d="M0,120 L40,40 L80,90 L120,20 L160,120 Z" fill="#8A9574" opacity="0.7"/>
+      <path d="M40,120 L80,60 L120,100 L160,50 L160,120 Z" fill="#6E8060" opacity="0.85"/>
+    </g>
+    <text x="200" y="300" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="28" fill="#3a4a3a">Save the Date</text>
+  </svg>
+</template>
+<title>Yaz & Yosef · Save the Date</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #1a1512;
+    color: #2B2418;
+    overscroll-behavior: none;
+  }
+
+  /* stage — centers the phone on desktop, full-bleed on small screens */
+  .stage {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+    background:
+      radial-gradient(ellipse at 50% 0%, #2a2018 0%, #15100c 60%, #0a0705 100%);
+  }
+
+  @media (max-width: 480px) {
+    .stage { padding: 0; }
+    .phone-wrap { border-radius: 0 !important; box-shadow: none !important; }
+  }
+
+  /* save the date scrollable content */
+  .phone-scroll {
+    width: 100%; height: 100%;
+    overflow-y: auto; overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  .phone-scroll::-webkit-scrollbar { display: none; }
+
+  /* paper/cream background */
+  .cream-bg {
+    background:
+      radial-gradient(ellipse at 30% 20%, #F9F1E2 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 85%, #F0E5D0 0%, transparent 50%),
+      linear-gradient(180deg, #F6EDDC 0%, #EDE1C9 100%);
+    position: relative;
+  }
+  .cream-bg::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(circle at 15% 30%, rgba(139,108,66,0.04), transparent 40%),
+      radial-gradient(circle at 85% 70%, rgba(139,108,66,0.05), transparent 45%);
+    mix-blend-mode: multiply;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.65; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.9; }
+  }
+  @keyframes floatIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  /* Landing screen — gentle pan/zoom on the watercolor */
+  @keyframes landingFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes landingDrift {
+    from { transform: scale(1.04) translateY(0); }
+    to   { transform: scale(1.10) translateY(-6px); }
+  }
+  /* Reveal — watercolor zooms in & dissolves outward, then ring photo shows through */
+  @keyframes revealZoom {
+    0%   { transform: scale(1.05); filter: blur(0); opacity: 1; }
+    60%  { transform: scale(1.45); filter: blur(2px); opacity: 0.8; }
+    100% { transform: scale(1.9);  filter: blur(8px); opacity: 0; }
+  }
+  @keyframes revealIris {
+    0%   { opacity: 0; }
+    50%  { opacity: 0.6; }
+    100% { opacity: 0; }
+  }
+  @keyframes revealOverlay {
+    0%, 70% { opacity: 1; }
+    100%    { opacity: 0; }
+  }
+  @keyframes textBlurIn {
+    from { opacity: 0; filter: blur(14px); transform: translateY(8px); }
+    to   { opacity: 1; filter: blur(0); transform: translateY(0); }
+  }
+  .stdt-text-in > * {
+    animation: textBlurIn 1.1s cubic-bezier(.2,.7,.2,1) both;
+    animation-delay: 0.6s;
+  }
+  .stdt-photo-in {
+    animation: floatIn 0.9s ease-out both;
+  }
+
+  /* envelope open → photo simply fades in at final size (no scaling) */
+  @keyframes photoPullOut {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes envSink {
+    from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    to   { opacity: 0; transform: translate(-50%, -48%) scale(0.92); }
+  }
+  @keyframes fadeInGlow {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* Tweaks panel */
+  .tweaks-panel {
+    position: fixed; bottom: 16px; right: 16px;
+    background: rgba(26, 21, 18, 0.92);
+    backdrop-filter: blur(16px);
+    color: #F6EDDC;
+    border: 1px solid rgba(246,237,220,0.12);
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-family: 'Inter', sans-serif; font-size: 11px;
+    min-width: 220px;
+    z-index: 1000;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  }
+  .tweaks-panel h3 {
+    margin: 0 0 12px; font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: rgba(246,237,220,0.6); font-weight: 500;
+  }
+  .tweaks-panel label { display: block; margin-bottom: 10px; }
+  .tweaks-panel .lbl {
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(246,237,220,0.5); margin-bottom: 5px;
+  }
+  .tweaks-panel .opts {
+    display: flex; gap: 4px; flex-wrap: wrap;
+  }
+  .tweaks-panel .opt {
+    padding: 5px 9px; border-radius: 6px; cursor: pointer;
+    background: rgba(246,237,220,0.08);
+    border: 1px solid rgba(246,237,220,0.08);
+    color: rgba(246,237,220,0.8);
+    font-size: 10px; letter-spacing: 0.3px;
+    transition: all .15s;
+  }
+  .tweaks-panel .opt:hover { background: rgba(246,237,220,0.14); }
+  .tweaks-panel .opt.active {
+    background: #E8D9C0; color: #1a1512; border-color: #E8D9C0;
+  }
+  .swatch { width: 14px; height: 14px; border-radius: 50%; display: inline-block; vertical-align: middle; margin-right: 5px; border: 0.5px solid rgba(246,237,220,0.3); }
+
+  .reset-btn {
+    margin-top: 8px; padding: 6px 12px; width: 100%;
+    background: transparent; color: rgba(246,237,220,0.5);
+    border: 1px solid rgba(246,237,220,0.15);
+    border-radius: 6px; cursor: pointer;
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    font-family: inherit;
+  }
+  .reset-btn:hover { color: #F6EDDC; border-color: rgba(246,237,220,0.3); }
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="ios-frame.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+<script type="text/babel" src="details.jsx"></script>
+
+<script type="text/babel" data-presets="react">
+const { useState, useEffect, useRef } = React;
+
+function SaveTheDate() {
+  // ─── Tweakable state ───
+  const [tone, setTone] = useState(window.TWEAK_DEFAULTS.envelopeTone);
+  const [motionStyle, setMotionStyle] = useState(window.TWEAK_DEFAULTS.motionStyle);
+  const [nameTreatment, setNameTreatment] = useState(window.TWEAK_DEFAULTS.nameTreatment);
+
+  // ─── envelope open state ───
+  const [opened, setOpened] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
+  const scrollerRef = useRef(null);
+
+  useEffect(() => {
+    if (opened) setShowDetails(true);
+  }, [opened]);
+
+  // ─── Edit-mode wiring ───
+  const [editOn, setEditOn] = useState(false);
+  useEffect(() => {
+    const handler = (e) => {
+      if (!e.data) return;
+      if (e.data.type === '__activate_edit_mode') setEditOn(true);
+      if (e.data.type === '__deactivate_edit_mode') setEditOn(false);
+    };
+    window.addEventListener('message', handler);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', handler);
+  }, []);
+
+  const persist = (key, val) => {
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [key]: val } }, '*');
+  };
+  const update = (setter, key) => (val) => {
+    setter(val); persist(key, val);
+  };
+
+  const resetEnvelope = () => {
+    setOpened(false);
+    setShowDetails(false);
+    if (scrollerRef.current) scrollerRef.current.scrollTop = 0;
+  };
+
+  // ─── Phone-sized container. Responsive: full viewport on narrow screens ───
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 480;
+  const phoneW = isMobile ? window.innerWidth : 390;
+  const phoneH = isMobile ? window.innerHeight : 844;
+
+  const t = window.ENVELOPE_TONES[tone];
+
+  return (
+    <>
+      <div className="stage">
+        <div className="phone-wrap" style={{
+          width: phoneW, height: phoneH,
+          borderRadius: isMobile ? 0 : 44,
+          overflow: 'hidden', position: 'relative',
+          boxShadow: isMobile ? 'none' : '0 40px 80px rgba(0,0,0,0.4), 0 0 0 10px #1a1512, 0 0 0 11px rgba(246,237,220,0.08)',
+          background: '#F6EDDC',
+        }}>
+          <div ref={scrollerRef} className="phone-scroll cream-bg">
+
+            {/* ───────── Landing screen — watercolor mountains, tap to enter ───────── */}
+            {!opened && (
+              <section
+                onClick={() => setOpened(true)}
+                style={{
+                  height: phoneH, width: '100%',
+                  position: 'relative', overflow: 'hidden',
+                  cursor: 'pointer',
+                  animation: 'landingFade 1.4s ease-out both',
+                }}
+              >
+                {/* watercolor landscape */}
+                <div style={{
+                  position: 'absolute', inset: 0,
+                  backgroundImage: 'url(' + window.__resources.watercolor + ')',
+                  backgroundSize: 'cover', backgroundPosition: 'center 35%',
+                  animation: 'landingDrift 14s ease-in-out infinite alternate',
+                }}/>
+
+                {/* soft cream wash at top for legibility */}
+                <div style={{
+                  position: 'absolute', top: 0, left: 0, right: 0, height: '32%',
+                  background: 'linear-gradient(180deg, rgba(255,250,238,0.85) 0%, rgba(255,250,238,0.45) 50%, rgba(255,250,238,0) 100%)',
+                  pointerEvents: 'none',
+                }}/>
+
+                {/* title */}
+                <div style={{
+                  position: 'absolute', top: 76, left: 0, right: 0,
+                  textAlign: 'center', padding: '0 32px',
+                }}>
+                  <div style={{
+                    fontFamily: '"Cormorant Garamond", serif', fontStyle: 'italic',
+                    fontWeight: 400, fontSize: 26, lineHeight: 1.2,
+                    color: '#3a4a3a', letterSpacing: 0.3,
+                    textShadow: '0 1px 2px rgba(255,250,238,0.6)',
+                  }}>
+                    A letter from the mountains
+                  </div>
+                  <div style={{
+                    margin: '20px auto 0', width: 32, height: 0.5,
+                    background: 'rgba(58,74,58,0.4)',
+                  }}/>
+                </div>
+
+                {/* tap hint at bottom — pill with backdrop for legibility */}
+                <div style={{
+                  position: 'absolute', bottom: 56, left: 0, right: 0,
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14,
+                }}>
+                  <div style={{
+                    background: 'rgba(255,250,238,0.88)',
+                    backdropFilter: 'blur(6px)',
+                    WebkitBackdropFilter: 'blur(6px)',
+                    border: '1px solid rgba(58,74,58,0.18)',
+                    padding: '12px 22px', borderRadius: 999,
+                    fontFamily: '"Cormorant Garamond", serif', fontStyle: 'italic',
+                    fontSize: 16, color: '#3a4a3a', letterSpacing: 0.3,
+                    boxShadow: '0 6px 20px rgba(40,60,40,0.18)',
+                  }}>
+                    Tap anywhere to continue the story
+                  </div>
+                  <div style={{
+                    animation: 'pulse 2.4s ease-in-out infinite',
+                    width: 38, height: 38, borderRadius: '50%',
+                    background: 'rgba(255,250,238,0.85)',
+                    border: '1px solid rgba(58,74,58,0.35)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: 14, color: '#3a4a3a',
+                    boxShadow: '0 4px 12px rgba(40,60,40,0.15)',
+                  }}>
+                    ↓
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {/* ───────── Reveal animation overlay (plays once on tap) ───────── */}
+            {opened && (
+              <div style={{
+                position: 'absolute', inset: 0, zIndex: 20,
+                pointerEvents: 'none',
+                animation: 'revealOverlay 1.4s ease-out both',
+              }}>
+                <div style={{
+                  position: 'absolute', inset: 0,
+                  backgroundImage: 'url(' + window.__resources.watercolor + ')',
+                  backgroundSize: 'cover', backgroundPosition: 'center 35%',
+                  animation: 'revealZoom 1.4s cubic-bezier(.5,.0,.3,1) both',
+                  WebkitMaskImage: 'radial-gradient(ellipse at center, #000 0%, #000 100%)',
+                  maskImage: 'radial-gradient(ellipse at center, #000 0%, #000 100%)',
+                }}/>
+                {/* iris-out wash that paints away the watercolor */}
+                <div style={{
+                  position: 'absolute', inset: 0,
+                  animation: 'revealIris 1.4s ease-out both',
+                  background: 'radial-gradient(circle at center, rgba(255,250,238,0) 0%, rgba(255,250,238,0) 30%, rgba(255,250,238,0.95) 100%)',
+                }}/>
+              </div>
+            )}
+
+            {/* ───────── After open: 3 full-bleed photo sections (photo fades, text blurs in) ───────── */}
+            {showDetails && (
+              <div>
+                <RingSection phoneH={phoneH} justOpened/>
+                <NamesSection phoneH={phoneH}/>
+                <CountdownSection phoneH={phoneH} target={window.WEDDING.date}/>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Tweaks panel */}
+      {editOn && (
+        <div className="tweaks-panel">
+          <h3>Tweaks</h3>
+
+          <div className="lbl">Envelope tone</div>
+          <div className="opts" style={{ marginBottom: 12 }}>
+            {Object.keys(window.ENVELOPE_TONES).map(k => {
+              const active = k === tone;
+              return (
+                <div key={k}
+                  className={'opt' + (active ? ' active' : '')}
+                  onClick={() => update(setTone, 'envelopeTone')(k)}>
+                  <span className="swatch" style={{ background: window.ENVELOPE_TONES[k].paper }}/>
+                  {k}
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="lbl">Photo reveal</div>
+          <div className="opts" style={{ marginBottom: 12 }}>
+            {['tumble', 'fan'].map(k => (
+              <div key={k}
+                className={'opt' + (k === motionStyle ? ' active' : '')}
+                onClick={() => update(setMotionStyle, 'motionStyle')(k)}>
+                {k}
+              </div>
+            ))}
+          </div>
+
+          <div className="lbl">Names</div>
+          <div className="opts" style={{ marginBottom: 4 }}>
+            {[['serif', 'stacked italic'], ['caps', 'horizontal caps']].map(([k, label]) => (
+              <div key={k}
+                className={'opt' + (k === nameTreatment ? ' active' : '')}
+                onClick={() => update(setNameTreatment, 'nameTreatment')(k)}>
+                {label}
+              </div>
+            ))}
+          </div>
+
+          <button className="reset-btn" onClick={resetEnvelope}>
+            Reset envelope ↺
+          </button>
+        </div>
+      )}
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<SaveTheDate/>);
+</script>
+
+</body>
+</html>
