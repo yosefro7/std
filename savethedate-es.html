@@ -1,81 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yaz & Yosef · Save the Date</title>
-  <meta name="description" content="">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Yaz & Yosef Save The Date">
-  <meta property="og:description" content="">
-  <meta property="og:image" content="assets/watercolor-landscape.jpeg">
-  <meta property="og:image:alt" content="Watercolor mountain landscape invitation preview">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Yaz & Yosef Save The Date">
-  <meta name="twitter:description" content="">
-  <meta name="twitter:image" content="assets/watercolor-landscape.jpeg">
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: #1a1512;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-    }
-    .frame {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: block;
-      background: #1a1512;
-    }
-    .fallback {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      color: #f6eddc;
-      text-align: center;
-      padding: 24px;
-    }
-  </style>
-</head>
-<body>
-  <iframe
-    id="offline-app"
-    class="frame"
-    title="Save The Date"
-    src="Save%20The%20Date%20(standalone).html">
-  </iframe>
-
-  <div id="fallback" class="fallback">
-    Could not load the offline bundle. Ensure
-    <code>Save The Date (standalone).html</code> is in the same folder.
-  </div>
-
-  <script>
-    (function () {
-      var iframe = document.getElementById('offline-app');
-      var fallback = document.getElementById('fallback');
-      var timer = setTimeout(function () {
-        fallback.style.display = 'flex';
-      }, 3000);
-      iframe.addEventListener('load', function () {
-        clearTimeout(timer);
-      });
-    })();
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yaz & Yosef · Save the Date</title>
+<title>Yaz & Yosef · Save The Date</title>
 <meta name="description" content="">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Yaz & Yosef Save The Date">
@@ -416,9 +344,9 @@ const WEDDING = {
   bride: 'Yaz',
   groom: 'Yosef',
   date: new Date('2027-03-13T17:00:00-06:00'),
-  dateLong: 'Saturday, March 13, 2027',
+  dateLong: 'Sabado, 13 de marzo de 2027',
   dateShort: '03 · 13 · 27',
-  dateMonth: 'MARCH',
+  dateMonth: 'MARZO',
   dateDay: '13',
   dateYear: '2027',
   location: 'Jiutepec, Morelos',
@@ -449,7 +377,7 @@ function Countdown({ target }) {
       <div style={{ fontFamily: '"Inter", sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.75)', marginTop: 8, textShadow: '0 1px 6px rgba(0,0,0,0.6)' }}>{label}</div>
     </div>
   );
-  return <div style={{ display: 'flex', gap: 4, margin: '0 auto', maxWidth: 340 }}>{unit(days, 'days')}{unit(hours, 'hrs')}{unit(minutes, 'min')}{unit(seconds, 'sec')}</div>;
+  return <div style={{ display: 'flex', gap: 4, margin: '0 auto', maxWidth: 340 }}>{unit(days, 'dias')}{unit(hours, 'hrs')}{unit(minutes, 'min')}{unit(seconds, 'seg')}</div>;
 }
 
 function RingSection({ phoneH, justOpened }) {
@@ -461,7 +389,7 @@ function RingSection({ phoneH, justOpened }) {
         <div style={{ position: 'absolute', top: 48, left: 0, right: 0, textAlign: 'center', fontFamily: '"Inter", sans-serif', fontSize: 10, letterSpacing: 5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.9)' }}>— Yaz <span style={{ opacity: 0.7, margin: '0 3px' }}>&amp;</span> Yosef —</div>
         <div style={{ position: 'absolute', left: 0, right: 0, top: '50%', transform: 'translateY(-50%)', textAlign: 'center', padding: '0 24px' }}>
           <div style={{ fontFamily: '"Cormorant Garamond", serif', fontStyle: 'italic', fontWeight: 400, fontSize: 68, lineHeight: 1, color: '#fff', letterSpacing: -1 }}>Save<div style={{ fontStyle: 'normal', fontSize: 18, letterSpacing: 6, margin: '6px 0', textTransform: 'uppercase', opacity: 0.85 }}>the</div>Date</div>
-          <div style={{ marginTop: 26, fontFamily: '"Cormorant Garamond", serif', fontWeight: 400, fontSize: 28, color: '#fff', letterSpacing: 0.5 }}>March 13<span style={{ fontSize: 16, verticalAlign: 'super' }}>th</span>, 2027</div>
+          <div style={{ marginTop: 26, fontFamily: '"Cormorant Garamond", serif', fontWeight: 400, fontSize: 28, color: '#fff', letterSpacing: 0.5 }}>13 de marzo de 2027</div>
         </div>
       </div>
     </section>
@@ -488,7 +416,7 @@ function CountdownSection({ phoneH, target }) {
       <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(assets/mountainview.jpeg)', backgroundSize: 'cover', backgroundPosition: 'center' }}/>
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(10,14,18,0.55) 0%, rgba(10,14,18,0.25) 50%, rgba(10,14,18,0.75) 100%)' }}/>
       <div style={{ position: 'absolute', left: 0, right: 0, top: '50%', transform: 'translateY(-50%)', padding: '0 20px' }}>
-        <div style={{ textAlign: 'center', marginBottom: 40, fontFamily: '"Cormorant Garamond", serif', fontStyle: 'italic', fontSize: 30, color: '#fff', lineHeight: 1.2 }}>Until we say<br/><span style={{ fontStyle: 'normal', letterSpacing: 2, fontSize: 24 }}>I DO</span></div>
+        <div style={{ textAlign: 'center', marginBottom: 40, fontFamily: '"Cormorant Garamond", serif', fontStyle: 'italic', fontSize: 30, color: '#fff', lineHeight: 1.2 }}>Hasta decir<br/><span style={{ fontStyle: 'normal', letterSpacing: 2, fontSize: 24 }}>SI, ACEPTO</span></div>
         <Countdown target={target}/>
       </div>
     </section>
@@ -600,7 +528,7 @@ function SaveTheDate() {
                     color: '#3a4a3a', letterSpacing: 0.3,
                     textShadow: '0 1px 2px rgba(255,250,238,0.6)',
                   }}>
-                    A letter from the mountains
+                    Una carta desde las montanas
                   </div>
                   <div style={{
                     margin: '20px auto 0', width: 32, height: 0.5,
@@ -623,7 +551,7 @@ function SaveTheDate() {
                     fontSize: 16, color: '#3a4a3a', letterSpacing: 0.3,
                     boxShadow: '0 6px 20px rgba(40,60,40,0.18)',
                   }}>
-                    Tap anywhere to continue the story
+                    Toca en cualquier parte para continuar la historia
                   </div>
                   <div style={{
                     animation: 'pulse 2.4s ease-in-out infinite',
@@ -681,7 +609,7 @@ function SaveTheDate() {
         <div className="tweaks-panel">
           <h3>Tweaks</h3>
 
-          <div className="lbl">Envelope tone</div>
+          <div className="lbl">Tono del sobre</div>
           <div className="opts" style={{ marginBottom: 12 }}>
             {Object.keys(window.ENVELOPE_TONES).map(k => {
               const active = k === tone;
@@ -696,7 +624,7 @@ function SaveTheDate() {
             })}
           </div>
 
-          <div className="lbl">Photo reveal</div>
+          <div className="lbl">Revelado de foto</div>
           <div className="opts" style={{ marginBottom: 12 }}>
             {['tumble', 'fan'].map(k => (
               <div key={k}
@@ -707,9 +635,9 @@ function SaveTheDate() {
             ))}
           </div>
 
-          <div className="lbl">Names</div>
+          <div className="lbl">Nombres</div>
           <div className="opts" style={{ marginBottom: 4 }}>
-            {[['serif', 'stacked italic'], ['caps', 'horizontal caps']].map(([k, label]) => (
+            {[['serif', 'cursiva apilada'], ['caps', 'mayusculas horizontales']].map(([k, label]) => (
               <div key={k}
                 className={'opt' + (k === nameTreatment ? ' active' : '')}
                 onClick={() => update(setNameTreatment, 'nameTreatment')(k)}>
@@ -719,7 +647,7 @@ function SaveTheDate() {
           </div>
 
           <button className="reset-btn" onClick={resetEnvelope}>
-            Reset envelope ↺
+            Reiniciar sobre ↺
           </button>
         </div>
       )}
@@ -762,7 +690,7 @@ function BgMusic() {
   return (
     <>
       <audio ref={ref} src="assets/marry-you-piano.mp3" loop preload="auto" />
-      <button onClick={toggle} aria-label={muted ? 'Unmute' : 'Mute'} style={{
+      <button onClick={toggle} aria-label={muted ? 'Activar sonido' : 'Silenciar'} style={{
         position: 'fixed', top: 14, right: 14, zIndex: 2000,
         width: 40, height: 40, borderRadius: '50%',
         background: 'rgba(255,250,238,0.85)',
@@ -784,7 +712,7 @@ function BgMusic() {
           color: '#3a4a3a', fontSize: 13,
           boxShadow: '0 4px 14px rgba(0,0,0,0.15)',
           cursor: 'pointer',
-        }}>tap to play music</button>
+        }}>toca para reproducir musica</button>
       )}
     </>
   );
